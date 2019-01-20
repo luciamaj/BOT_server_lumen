@@ -17,15 +17,15 @@ class AnswerController extends Controller
     public function create(Request $request)
     {   
         $code = $request->file('code');
+        $answer = new Answer;
         if($code) {
             $extension = $code->getClientOriginalExtension();
             Storage::disk('public')->put($code->getFilename().'.'.$extension,  File::get($code));
+            $answer->mime = $code->getClientMimeType();
+            $answer->original_filename = $code->getClientOriginalName();
+            $answer->filename = $code->getFilename().'.'.$extension;
         }
-        $answer = new Answer;
         $answer->content = $request->input('content');
-        $answer->mime = $code->getClientMimeType();
-        $answer->original_filename = $code->getClientOriginalName();
-        $answer->filename = $code->getFilename().'.'.$extension;
         $answer->save();
 
         return response()->json($answer);

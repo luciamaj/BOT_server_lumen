@@ -11,7 +11,7 @@ class QuestionController extends Controller
     {
         return response()->json(Answer::all());
     }
-
+    
     public function create(Request $request)
     {
         $question = new Question;

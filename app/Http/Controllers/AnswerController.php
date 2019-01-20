@@ -16,8 +16,8 @@ class AnswerController extends Controller
 
     public function create(Request $request)
     {   
-        $code = $request->file('code');
         $answer = new Answer;
+        $code = $request->file('code');
         if($code) {
             $extension = $code->getClientOriginalExtension();
             Storage::disk('public')->put($code->getFilename().'.'.$extension,  File::get($code));

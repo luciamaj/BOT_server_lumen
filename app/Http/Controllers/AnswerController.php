@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Answer;
+use App\Keyword;
 use Illuminate\Http\Request;
 use Storage;
 use File;
@@ -35,5 +36,12 @@ class AnswerController extends Controller
         $answer = Answer::find($id);
         $answer->delete();
         return response()->json('deleted');
+    }
+
+    public function showKeywords($id) {
+        $answer = Answer::find($id);
+        $answer_id = $answer->id;
+        $keywords = Keyword::where('answer_id', '=', $answer_id)->get();
+        return response()->json($keywords);
     }
 }

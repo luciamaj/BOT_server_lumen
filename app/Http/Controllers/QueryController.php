@@ -27,6 +27,8 @@ class QueryController extends Controller
         $negativeScore = $analysis->isNegative($question);
         $question = preg_replace('/[^a-z0-9]+/i', '_', $question);
 
+        $question = strtolower($question);    
+
         $questions = explode("_", $question);
         $keywordsAll = Keyword::all();
         $keywords = Keyword::pluck('word');
@@ -38,6 +40,7 @@ class QueryController extends Controller
         
         for($i = 0; $i < sizeof($keywords); $i++) {
             $a = $keywords[$i];
+            $a = strtolower($a); 
             for($k = 0; $k < sizeof($questions); $k++) {
                 if($questions[$k] === $keywords[$i]) {
                     $arrayFound[$i]++;

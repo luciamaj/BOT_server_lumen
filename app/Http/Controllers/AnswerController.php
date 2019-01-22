@@ -30,4 +30,10 @@ class AnswerController extends Controller
 
         return response()->json($answer);
     }
+
+    public function destroy($id) {
+        $answer = Answer::find($id);
+        $answer->delete();
+        return response()->json('deleted');
+    }
 }

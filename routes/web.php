@@ -18,6 +18,7 @@ $router->get('/', function () use ($router) {
 $router->group(['prefix' => 'api', 'middleware' => 'cors'], function () use ($router) {
     $router->get('answers',  ['uses' => 'AnswerController@showAllAnswers']);
     $router->post('answers', ['uses' => 'AnswerController@create']);
+    $router->get('answers-delete/{id}', ['uses' => 'AnswerController@destroy']);
 
     $router->post('questions', ['uses' => 'QuestionController@create']);
     $router->post('question-user', ['uses' => 'QuestionController@createUserQ']);
@@ -27,6 +28,7 @@ $router->group(['prefix' => 'api', 'middleware' => 'cors'], function () use ($ro
     $router->post('last-question', ['uses' => 'QuestionController@getLast']);
     
     $router->post('keywords', ['uses' => 'KeywordController@create']);
+    $router->post('keywords-delete', ['uses' => 'KeywordController@destroy']);
     
     $router->post('query', ['uses' => 'QueryController@checkKeywords']);
 

@@ -43,7 +43,7 @@ class QuestionController extends Controller
     public function getLast(Request $request)
     {
         $ip = $request->ip();
-
+        
         $question = Question::orderBy('created_at', 'desc')->where('ip', '=', $ip)->first();
 
         return response()->json($question);

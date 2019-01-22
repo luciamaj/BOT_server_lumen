@@ -14,4 +14,12 @@ class KeywordController extends Controller
 
         return response()->json($keyword, 201);
     }
+
+    public function destroy(Request $request)
+    {
+        $keywords = $request->keywords;
+        Keyword::destroy($keywords);
+
+        return response()->json($keywords);
+    }
 }

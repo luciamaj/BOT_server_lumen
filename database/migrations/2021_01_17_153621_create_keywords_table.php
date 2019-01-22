@@ -17,7 +17,7 @@ class CreateKeywordsTable extends Migration
             $table->increments('id');
             $table->text('word');
             $table->integer('answer_id')->unsigned();
-            $table->foreign('answer_id')->references('id')->on('answers');
+            $table->foreign('answer_id')->references('id')->on('answers')->onDelete('cascade');
             $table->timestamps();
         });
     }
